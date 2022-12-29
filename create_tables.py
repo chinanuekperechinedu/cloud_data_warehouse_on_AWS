@@ -4,14 +4,24 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
-    """This function drops all existing tables in the database."""
+    """Drops all existing tables in the database.
+
+        Keyword arguments:
+            cur -- cursor which helps to execute the sql query
+            conn -- connection to Redshift cluster
+    """
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
-    """This function is for creating staging, facts and dimensions tables in the database."""
+    """Creates staging, fact and dimensions tables in the database.
+    
+        Keyword arguments:
+            cur -- cursor which helps to execute the sql query
+            conn -- connection to Redshift cluster
+    """
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()

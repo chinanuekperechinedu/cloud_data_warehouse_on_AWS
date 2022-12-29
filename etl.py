@@ -4,8 +4,13 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
-    """This function loads the staging tables staging_events
-        and staging_songs from S3"""
+    """loads data into staging_events
+        and staging_songs from S3
+        
+        Keyword arguments:
+            cur -- cursor which helps to execute the sql query
+            conn -- connection to Redshift cluster
+        """
     cn = 0
     for query in copy_table_queries:
         cur.execute(query)
@@ -15,8 +20,13 @@ def load_staging_tables(cur, conn):
 
 
 def insert_tables(cur, conn):
-    """This function is for loading songplays, users, artists
-        time and songs tables from staging_events and staging_songs"""
+    """inserts data into songplays, users, artists
+        time and songs tables from staging_events and staging_songs
+        
+        Keyword arguments:
+            cur -- cursor which helps to execute the sql query
+            conn -- connection to Redshift cluster
+        """
     for query in insert_table_queries:
         cur.execute(query)
         conn.commit()

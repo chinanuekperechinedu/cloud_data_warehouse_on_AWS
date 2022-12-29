@@ -23,97 +23,96 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 staging_events_table_create= ("""
     CREATE TABLE staging_events(
-        artist VARCHAR,
-        auth VARCHAR,
-        firstName VARCHAR,
-        gender VARCHAR(1),
-        itemInSession VARCHAR,
-        lastName VARCHAR,
-        length DECIMAL,
-        level VARCHAR,
-        location VARCHAR(500),
-        method VARCHAR,
-        page VARCHAR(500),
-        registration DECIMAL,
-        sessionId INTEGER,
-        song VARCHAR,
-        status smallint,
-        ts BIGINT,
-        userAgent VARCHAR,
-        userId smallint
+        artist          VARCHAR,
+        auth            VARCHAR,
+        firstName       VARCHAR,
+        gender          CHAR(1),
+        itemInSession   VARCHAR,
+        lastName        VARCHAR,
+        length          DECIMAL,
+        level           VARCHAR,
+        location        VARCHAR(500),
+        method          VARCHAR,
+        page            VARCHAR(500),
+        registration    DECIMAL,
+        sessionId       INTEGER,
+        song            VARCHAR,
+        status          SMALLINT,
+        ts              BIGINT,
+        userAgent       VARCHAR,
+        userId          smallint
     )
 """)
 
 staging_songs_table_create = ("""
     CREATE TABLE staging_songs(
-        num_songs INTEGER,
-        artist_id VARCHAR(250), 
-        artist_latitude VARCHAR(500),
-        artist_longitude VARCHAR(500),
-        artist_location VARCHAR(500),
-        artist_name VARCHAR(500),
-        song_id VARCHAR,
-        title VARCHAR(500),
-        duration DECIMAL,
-        year smallint
+        num_songs           INTEGER,
+        artist_id           VARCHAR(250), 
+        artist_latitude     VARCHAR(500),
+        artist_longitude    VARCHAR(500),
+        artist_location     VARCHAR(500),
+        artist_name         VARCHAR(500),
+        song_id             VARCHAR,
+        title               VARCHAR(500),
+        duration            DECIMAL,
+        year                SMALLINT
     );
 """)
 
 songplay_table_create = ("""
     CREATE TABLE songplays(
-        songplay_id BIGINT IDENTITY(0,1) NOT NULL,
-        start_time TIMESTAMP     sortkey, 
-        user_id INTEGER, 
-        level VARCHAR, 
-        song_id VARCHAR         distkey, 
-        artist_id VARCHAR, 
-        session_id INTEGER , 
-        location VARCHAR(500), 
-        user_agent VARCHAR(500)
+        songplay_id         BIGINT IDENTITY(0,1) PRIMARY KEY NOT NULL,
+        start_time          TIMESTAMP   SORTKEY, 
+        user_id             INTEGER, 
+        level               VARCHAR, 
+        song_id             VARCHAR     DISTKEY, 
+        artist_id           VARCHAR, 
+        session_id          INTEGER, 
+        location            VARCHAR(500), 
+        user_agent          VARCHAR(500)
     );
-
 """)
 
 user_table_create = ("""
     CREATE TABLE users(
-        user_id INTEGER NOT NULL  sortkey,
-        first_name VARCHAR,
-        last_name VARCHAR,
-        gender VARCHAR,
-        level VARCHAR
+        user_id         INTEGER PRIMARY KEY NOT NULL SORTKEY,
+        first_name      VARCHAR,
+        last_name       VARCHAR,
+        gender          VARCHAR,
+        level           VARCHAR
     );
 
 """)
 
 song_table_create = ("""
     CREATE TABLE songs(
-        song_id VARCHAR NOT NULL   sortkey distkey,
-        title VARCHAR(500),
-        artist_id VARCHAR, 
-        year smallint, 
-        duration DECIMAL
+        song_id         VARCHAR PRIMARY KEY NOT NULL SORTKEY DISTKEY,
+        title           VARCHAR(500),
+        artist_id       VARCHAR, 
+        year            SMALLINT, 
+        duration        DECIMAL
     );
 """)
 
 artist_table_create = ("""
     CREATE TABLE artists(
-        artist_id       VARCHAR NOT NULL  sortkey, 
+        artist_id       VARCHAR PRIMARY KEY NOT NULL SORTKEY, 
         name            VARCHAR(500), 
         location        VARCHAR(500), 
-        latitude       DECIMAL, 
+        latitude        DECIMAL, 
         longitude       DECIMAL
     );
 """)
 
 time_table_create = ("""
     CREATE TABLE time(
-        start_time timestamp NOT NULL   sortkey, 
-        hour smallint NOT NULL, 
-        day smallint NOT NULL, 
-        week smallint NOT NULL,
-        month smallint NOT NULL,
-        year smallint NOT NULL, 
-        weekday smallint NOT NULL
+        start_time      TIMESTAMP PRIMARY KEY NOT NULL SORTKEY, 
+        hour            SMALLINT NOT NULL, 
+        day             SMALLINT NOT NULL, 
+        week            SMALLINT NOT NULL,
+        month           SMALLINT NOT NULL,
+        year            SMALLINT NOT NULL, 
+        weekday         SMALLINT NOT NULL
     );
 """)
 
